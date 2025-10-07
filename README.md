@@ -15,11 +15,14 @@ Build Tool: Maven
 Security: Token-based Authentication
 
 ✨ Features
+
 User Authentication:
+
 Sign up, Sign in, and Sign out using secure credentials.
 Passwords are hashed before storing.
 
 Admin Panel:
+
 Admins can manage all users and tasks.
 Secure access with admin-level authentication.
 
@@ -38,31 +41,36 @@ Maven installed
 ⚙️ Installation
 
 Clone the Repository
+
 git clone https://github.com/yourusername/task-management-api.git
+
 cd task-management-api
 
 Configure the Database
+
 Update your MySQL connection settings in src/main/resources/application.properties.
+
 spring.datasource.url=jdbc:mysql://localhost:3306/taskdb
+
 spring.datasource.username=yourUsername
+
 spring.datasource.password=yourPassword
 
 Build and Run the Application
 mvn clean install
 mvn spring-boot:run
 
-🧪 Usage
-Use API tools like Postman to interact with endpoints. For authentication-required requests, include the generated token in the request header.
-
 📡 API Endpoints
 
 🔐 User Authentication
+
 Endpoint	Method	Description
 /user/signUp	POST	Register a new user
 /user/signIn	POST	Login and receive auth token
 /user/signOut	POST	Logout user
 
 📋 Task Management
+
 Endpoint	Method	Description
 /task/add	POST	Add new task
 /task/done	POST	Mark task as done
@@ -72,6 +80,7 @@ Endpoint	Method	Description
 /task/taskId/pagination	POST	Paginated task list for a user
 
 🛠️ Admin Management
+
 Endpoint	Method	Description
 /admin/signUp	POST	Register a new admin
 /admin/signIn	POST	Login as admin
