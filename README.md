@@ -2,7 +2,7 @@
 
 📌 Introduction
 
-Task Management System API is a backend application built with Java Spring Boot that enables users to register, log in, manage personal tasks, and perform CRUD operations. Admins have extended access to manage users and tasks system-wide.
+Task Management System is a backend application built with Java Spring Boot that enables users to register, log in, manage personal tasks, and perform CRUD operations. Admins have extended access to manage users and tasks system-wide.
 This project is ideal for understanding RESTful API development using Spring Boot, database integration, and secure authentication.
 
 💻 Technologies Used
@@ -13,10 +13,8 @@ Database: MySQL
 ORM: Hibernate / JPA
 Build Tool: Maven
 Security: Token-based Authentication
-Email Integration (Optional for notifications)
 
 ✨ Features
-
 User Authentication:
 Sign up, Sign in, and Sign out using secure credentials.
 Passwords are hashed before storing.
