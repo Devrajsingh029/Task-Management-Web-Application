@@ -85,10 +85,10 @@ AuthenticationToken Table: Stores session tokens for users/admins
 
 🔐 Security
 
-Authentication:
+Authentication: 
 Implemented via custom AuthenticationToken. Token is generated at login and passed in headers for authorized API calls.
 
-Password Hashing:
+Password Hashing: 
 Passwords are securely hashed before storing using standard encoding mechanisms.
 
 
