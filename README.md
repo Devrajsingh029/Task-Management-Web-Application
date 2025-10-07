@@ -8,10 +8,15 @@ This project is ideal for understanding RESTful API development using Spring Boo
 💻 Technologies Used
 
 Framework: Spring Boot
+
 Language: Java
+
 Database: MySQL
+
 ORM: Hibernate / JPA
+
 Build Tool: Maven
+
 Security: Token-based Authentication
 
 ✨ Features
@@ -27,8 +32,11 @@ Admins can manage all users and tasks.
 Secure access with admin-level authentication.
 
 Task Management:
+
 Create, update, delete tasks.
+
 Mark tasks as done/undone.
+
 View task list with pagination.
 
 ✅ Prerequisites
