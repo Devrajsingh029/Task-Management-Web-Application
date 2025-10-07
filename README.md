@@ -64,10 +64,6 @@ spring.datasource.username=yourUsername
 
 spring.datasource.password=yourPassword
 
-Build and Run the Application
-mvn clean install
-mvn spring-boot:run
-
 📡 API Endpoints
 
 🔐 User Authentication
