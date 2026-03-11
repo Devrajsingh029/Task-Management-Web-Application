@@ -1,6 +1,4 @@
-Here is a **clean, professional GitHub README.md** you can use for your project. It follows common GitHub conventions (overview, tech stack, setup, API, etc.) and looks good to recruiters.
 
----
 
 # Task Management Web Application
 
