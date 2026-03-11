@@ -50,8 +50,6 @@ Maven installed
 
 Clone the Repository
 
-git clone https://github.com/yourusername/task-management-api.git
-
 cd task-management-api
 
 Configure the Database
