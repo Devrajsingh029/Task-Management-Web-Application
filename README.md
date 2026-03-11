@@ -64,10 +64,10 @@ Database (MySQL)
 
 ## Database Design
 
-The application uses relational mappings with **JPA annotations**:
+The application uses relational mappings with JPA annotations:
 
-* **OneToMany**
-* **ManyToOne**
+* OneToMany
+* ManyToOne
 
 These mappings help maintain **data consistency and relationships between entities**.
 
