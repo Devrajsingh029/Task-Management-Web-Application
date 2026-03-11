@@ -1,30 +1,29 @@
-Task Management Web Application
+Here is a **clean, professional GitHub README.md** you can use for your project. It follows common GitHub conventions (overview, tech stack, setup, API, etc.) and looks good to recruiters.
 
-A Task Management Web Application built using Spring Boot that provides RESTful APIs for managing tasks. The system allows users to create, update, track, and filter tasks while ensuring secure access using JWT authentication and role-based authorization.
+---
+
+# Task Management Web Application
+
+A **Task Management Web Application** built using **Spring Boot** that provides RESTful APIs for managing tasks. The system allows users to create, update, track, and filter tasks while ensuring secure access using **JWT authentication** and **role-based authorization**.
 
 This project demonstrates backend development skills using **Java, Spring Boot, Spring Security, Hibernate, and MySQL**, along with clean architecture and proper exception handling.
 
+---
 
-
-Features
+## Features
 
 * Create, update, and delete tasks
-
 * Filter tasks based on status or criteria
-  
 * Track task progress and status
-  
-* Secure APIs using JWT Authentication
-  
-* Role-based access control with Spring Security
-  
+* Secure APIs using **JWT Authentication**
+* Role-based access control with **Spring Security**
 * Input validation for API requests
-  
 * Global exception handling for standardized API responses
-  
-* Unit testing with JUnit 5 and Mockito
+* Unit testing with **JUnit 5** and **Mockito**
 
-Tech Stack
+---
+
+## Tech Stack
 
 | Technology      | Purpose                        |
 | --------------- | ------------------------------ |
@@ -38,11 +37,13 @@ Tech Stack
 | Mockito         | Mocking framework for tests    |
 | Maven           | Dependency Management          |
 
+---
 
-Project Architecture
+## Project Architecture
 
-The application follows a layered architecture:
+The application follows a **layered architecture**:
 
+```
 Controller Layer
       ↓
 Service Layer
@@ -50,24 +51,21 @@ Service Layer
 Repository Layer
       ↓
 Database (MySQL)
+```
 
+* **Controller** → Handles REST API requests
+* **Service** → Business logic
+* **Repository** → Database operations using JPA/Hibernate
+* **Security Layer** → JWT authentication and authorization
 
-* Controller → Handles REST API requests
-  
-* Service → Business logic
-  
-* Repository → Database operations using JPA/Hibernate
-  
-* Security Layer → JWT authentication and authorization
-
-
+---
 
 ## Database Design
 
-The application uses relational mappings with JPA annotations:
+The application uses relational mappings with **JPA annotations**:
 
-* OneToMany
-* ManyToOne
+* **OneToMany**
+* **ManyToOne**
 
 These mappings help maintain **data consistency and relationships between entities**.
 
