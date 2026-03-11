@@ -1,129 +1,231 @@
-# Task-Management-Web-Application
+Task Management Web Application
 
-📌 Introduction
+A Task Management Web Application built using Spring Boot that provides RESTful APIs for managing tasks. The system allows users to create, update, track, and filter tasks while ensuring secure access using JWT authentication and role-based authorization.
 
-Task Management System is a backend application built with Java Spring Boot that enables users to register, log in, manage personal tasks, and perform CRUD operations. Admins have extended access to manage users and tasks system-wide.
-This project is ideal for understanding RESTful API development using Spring Boot, database integration, and secure authentication.
+This project demonstrates backend development skills using **Java, Spring Boot, Spring Security, Hibernate, and MySQL**, along with clean architecture and proper exception handling.
 
-💻 Technologies Used
 
-Framework: Spring Boot
 
-Language: Java
+Features
 
-Database: MySQL
+* Create, update, and delete tasks
 
-ORM: Hibernate / JPA
+* Filter tasks based on status or criteria
+  
+* Track task progress and status
+  
+* Secure APIs using JWT Authentication
+  
+* Role-based access control with Spring Security
+  
+* Input validation for API requests
+  
+* Global exception handling for standardized API responses
+  
+* Unit testing with JUnit 5 and Mockito
 
-Build Tool: Maven
+Tech Stack
 
-Security: Token-based Authentication
+| Technology      | Purpose                        |
+| --------------- | ------------------------------ |
+| Java            | Programming Language           |
+| Spring Boot     | Backend Framework              |
+| Spring Security | Authentication & Authorization |
+| JWT             | Secure API access              |
+| Hibernate / JPA | ORM for database interaction   |
+| MySQL           | Relational Database            |
+| JUnit 5         | Unit Testing                   |
+| Mockito         | Mocking framework for tests    |
+| Maven           | Dependency Management          |
 
-✨ Features
 
-User Authentication:
+Project Architecture
 
-Sign up, Sign in, and Sign out using secure credentials.
+The application follows a layered architecture:
 
-Passwords are hashed before storing.
+Controller Layer
+      ↓
+Service Layer
+      ↓
+Repository Layer
+      ↓
+Database (MySQL)
 
-Admin Panel:
 
-Admins can manage all users and tasks.
+* Controller → Handles REST API requests
+  
+* Service → Business logic
+  
+* Repository → Database operations using JPA/Hibernate
+  
+* Security Layer → JWT authentication and authorization
 
-Secure access with admin-level authentication.
 
-Task Management:
 
-Create, update, delete tasks.
+## Database Design
 
-Mark tasks as done/undone.
+The application uses relational mappings with **JPA annotations**:
 
-View task list with pagination.
+* **OneToMany**
+* **ManyToOne**
 
-✅ Prerequisites
+These mappings help maintain **data consistency and relationships between entities**.
 
-Before running the project, make sure you have:
+Example relationship:
 
-Java JDK (11 or above)
+```
+User 1 --- * Tasks
+```
 
-MySQL installed and running
+---
 
-Maven installed
+## API Endpoints
 
-⚙️ Installation
+### Authentication
 
-Clone the Repository
+| Method | Endpoint           | Description                        |
+| ------ | ------------------ | ---------------------------------- |
+| POST   | /api/auth/register | Register new user                  |
+| POST   | /api/auth/login    | Authenticate user and generate JWT |
 
-cd task-management-api
+### Task Management
 
-Configure the Database
+| Method | Endpoint                   | Description            |
+| ------ | -------------------------- | ---------------------- |
+| POST   | /api/tasks                 | Create a new task      |
+| GET    | /api/tasks                 | Get all tasks          |
+| GET    | /api/tasks/{id}            | Get task by ID         |
+| PUT    | /api/tasks/{id}            | Update task            |
+| DELETE | /api/tasks/{id}            | Delete task            |
+| GET    | /api/tasks/status/{status} | Filter tasks by status |
 
-Update your MySQL connection settings in src/main/resources/application.properties.
+---
 
-spring.datasource.url=jdbc:mysql://localhost:3306/taskdb
+## Security
 
-spring.datasource.username=yourUsername
+The application uses **Spring Security with JWT**:
 
-spring.datasource.password=yourPassword
+* Stateless authentication
+* Token-based authorization
+* Role-based access control
+* Protected endpoints
 
-📡 API Endpoints
+Workflow:
 
-🔐 User Authentication
+```
+User Login
+   ↓
+JWT Token Generated
+   ↓
+Token sent in Authorization Header
+   ↓
+Spring Security validates token
+   ↓
+Access granted to secured endpoints
+```
 
-Endpoint	Method	Description
+---
 
-/user/signUp	POST	Register a new user
+## Exception Handling
 
-/user/signIn	POST	Login and receive auth token
+A **Global Exception Handler** is implemented to provide consistent API responses.
 
-/user/signOut	POST	Logout user
+Example response:
 
-📋 Task Management
+```json
+{
+  "timestamp": "2025-05-10T10:15:30",
+  "status": 400,
+  "error": "Validation Error",
+  "message": "Task title cannot be empty"
+}
+```
 
-Endpoint	Method	Description
+---
 
-/task/add	POST	Add new task
+## Testing
 
-/task/done	POST	Mark task as done
+Unit tests are implemented for service layer components using:
 
-/task/undone	DELETE	Delete task (admin/user)
+* **JUnit 5**
+* **Mockito**
 
-/task/todo	GET	View all tasks of a user
+This ensures:
 
-/task/update	PUT	Update task details
+* Business logic reliability
+* Easier debugging
+* Maintainable code
 
-/task/taskId/pagination	POST	Paginated task list for a user
+Run tests:
 
-🛠️ Admin Management
+```bash
+mvn test
+```
 
-Endpoint	Method	Description
+---
 
-/admin/signUp	POST	Register a new admin
+## Setup and Installation
 
-/admin/signIn	POST	Login as admin
+### 1. Clone the repository
 
-/admin/signOut	POST	Logout admin
+```bash
+git clone https://github.com/yourusername/task-management-app.git
+```
 
-🧩 Database Design
+### 2. Navigate to project folder
 
-User Table: Stores user info (name, email, password)
+```bash
+cd task-management-app
+```
 
-Admin Table: Stores admin credentials
+### 3. Configure MySQL
 
-Task Table: Contains task name, status, timestamps, linked to user
+Update `application.properties`:
 
-AuthenticationToken Table: Stores session tokens for users/admins
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/task_db
+spring.datasource.username=root
+spring.datasource.password=yourpassword
+spring.jpa.hibernate.ddl-auto=update
+```
 
-🔐 Security
+### 4. Run the application
 
-Authentication: 
+```bash
+mvn spring-boot:run
+```
 
-Implemented via custom AuthenticationToken. Token is generated at login and passed in headers for authorized API calls.
+Application will start at:
 
-Password Hashing: 
+```
+http://localhost:8080
+```
 
-Passwords are securely hashed before storing using standard encoding mechanisms.
+---
 
+## Future Improvements
 
+* Add frontend using **React or Angular**
+* Implement task deadlines and reminders
+* Add pagination and sorting
+* Dockerize the application
+* Deploy to cloud (AWS / Azure)
 
+---
+
+## Author
+
+**Your Name**
+
+If you like this project, feel free to ⭐ the repository.
+
+---
+
+If you want, I can also help you create a **much more impressive GitHub README with:**
+
+* badges (build, Java version, Spring Boot)
+* API request examples (Postman style)
+* project screenshots
+* folder structure section
+
+This can make your **GitHub look much stronger for job applications.**
