@@ -209,21 +209,7 @@ http://localhost:8080
 * Dockerize the application
 * Deploy to cloud (AWS / Azure)
 
----
 
-## Author
 
-**Your Name**
 
-If you like this project, feel free to ⭐ the repository.
 
----
-
-If you want, I can also help you create a **much more impressive GitHub README with:**
-
-* badges (build, Java version, Spring Boot)
-* API request examples (Postman style)
-* project screenshots
-* folder structure section
-
-This can make your **GitHub look much stronger for job applications.**
