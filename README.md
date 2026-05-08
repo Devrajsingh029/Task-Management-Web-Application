@@ -1,6 +1,6 @@
 
 
-# Task Management Web Application
+# Task Management Rest Api
 
 A **Task Management Web Application** built using **Spring Boot** that provides RESTful APIs for managing tasks. The system allows users to create, update, track, and filter tasks while ensuring secure access using **JWT authentication** and **role-based authorization**.
 
