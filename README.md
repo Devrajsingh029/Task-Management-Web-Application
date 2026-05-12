@@ -1,213 +1,95 @@
+# 📋 Task Management REST API
 
-
-# Task Management Rest Api
-
-A **Task Management Web Application** built using **Spring Boot** that provides RESTful APIs for managing tasks. The system allows users to create, update, track, and filter tasks while ensuring secure access using **JWT authentication** and **role-based authorization**.
-
-This project demonstrates backend development skills using **Java, Spring Boot, Spring Security, Hibernate, and MySQL**, along with clean architecture and proper exception handling.
+A secure, role-based REST API for managing tasks — built with Spring Boot, 
+JWT Authentication, and MySQL.
 
 ---
 
-## Features
+## 🛠️ Tech Stack
 
-* Create, update, and delete tasks
-* Filter tasks based on status or criteria
-* Track task progress and status
-* Secure APIs using **JWT Authentication**
-* Role-based access control with **Spring Security**
-* Input validation for API requests
-* Global exception handling for standardized API responses
-* Unit testing with **JUnit 5** and **Mockito**
-
----
-
-## Tech Stack
-
-| Technology      | Purpose                        |
-| --------------- | ------------------------------ |
-| Java            | Programming Language           |
-| Spring Boot     | Backend Framework              |
-| Spring Security | Authentication & Authorization |
-| JWT             | Secure API access              |
-| Hibernate / JPA | ORM for database interaction   |
-| MySQL           | Relational Database            |
-| JUnit 5         | Unit Testing                   |
-| Mockito         | Mocking framework for tests    |
-| Maven           | Dependency Management          |
+| Layer | Technology |
+|---|---|
+| Language | Java |
+| Framework | Spring Boot 3.x |
+| Security | Spring Security + JWT |
+| ORM | Hibernate / Spring Data JPA |
+| Database | MySQL |
+| Build Tool | Maven |
+| Deployment | Render |
 
 ---
 
-## Project Architecture
+## ✨ Features
 
-The application follows a **layered architecture**:
-
-```
-Controller Layer
-      ↓
-Service Layer
-      ↓
-Repository Layer
-      ↓
-Database (MySQL)
-```
-
-* **Controller** → Handles REST API requests
-* **Service** → Business logic
-* **Repository** → Database operations using JPA/Hibernate
-* **Security Layer** → JWT authentication and authorization
+- ✅ JWT-based Authentication (Login / Register)
+- ✅ Role-Based Access Control (USER / ADMIN)
+- ✅ Full Task CRUD — create, update, delete, view
+- ✅ Filter tasks by **status** and **priority**
+- ✅ Centralized Exception Handling with standard error responses
+- ✅ JPA Relational Mapping across 4 MySQL tables
 
 ---
 
-## Database Design
+## 🗂️ Project Structure
 
-The application uses relational mappings with **JPA annotations**:
-
-* **OneToMany**
-* **ManyToOne**
-
-These mappings help maintain **data consistency and relationships between entities**.
-
-Example relationship:
-
-```
-User 1 --- * Tasks
-```
+src/
+├── controller/      → REST endpoints
+├── service/         → Business logic
+├── repository/      → DB layer (JPA)
+├── model/           → Entities
+├── security/        → JWT + Spring Security config
+└── exception/       → Global exception handler
 
 ---
 
-## API Endpoints
+## 📡 API Endpoints
 
-### Authentication
-
-| Method | Endpoint           | Description                        |
-| ------ | ------------------ | ---------------------------------- |
-| POST   | /api/auth/register | Register new user                  |
-| POST   | /api/auth/login    | Authenticate user and generate JWT |
-
-### Task Management
-
-| Method | Endpoint                   | Description            |
-| ------ | -------------------------- | ---------------------- |
-| POST   | /api/tasks                 | Create a new task      |
-| GET    | /api/tasks                 | Get all tasks          |
-| GET    | /api/tasks/{id}            | Get task by ID         |
-| PUT    | /api/tasks/{id}            | Update task            |
-| DELETE | /api/tasks/{id}            | Delete task            |
-| GET    | /api/tasks/status/{status} | Filter tasks by status |
+| Method | Endpoint | Access | Description |
+|---|---|---|---|
+| POST | /api/auth/register | Public | Register new user |
+| POST | /api/auth/login | Public | Get JWT token |
+| GET | /api/tasks | USER, ADMIN | Get all tasks |
+| POST | /api/tasks | USER | Create task |
+| PUT | /api/tasks/{id} | USER | Update task |
+| DELETE | /api/tasks/{id} | ADMIN | Delete task |
+| GET | /api/tasks/filter | USER | Filter by priority/status |
 
 ---
 
-## Security
+## 🗃️ Database Schema
 
-The application uses **Spring Security with JWT**:
-
-* Stateless authentication
-* Token-based authorization
-* Role-based access control
-* Protected endpoints
-
-Workflow:
-
-```
-User Login
-   ↓
-JWT Token Generated
-   ↓
-Token sent in Authorization Header
-   ↓
-Spring Security validates token
-   ↓
-Access granted to secured endpoints
-```
+**Users** → OneToMany → **Tasks**  
+**Tasks** → ManyToOne → **Users**  
+(4 related tables with foreign key constraints)
 
 ---
 
-## Exception Handling
+## 🔐 Security Flow
 
-A **Global Exception Handler** is implemented to provide consistent API responses.
-
-Example response:
-
-```json
-{
-  "timestamp": "2025-05-10T10:15:30",
-  "status": 400,
-  "error": "Validation Error",
-  "message": "Task title cannot be empty"
-}
-```
+1. User registers → password stored as BCrypt hash
+2. User logs in → server returns signed JWT token
+3. All subsequent requests include `Authorization: Bearer <token>`
+4. Spring Security filter validates token on every request
+5. RBAC enforces what each role can access
 
 ---
 
-## Testing
-
-Unit tests are implemented for service layer components using:
-
-* **JUnit 5**
-* **Mockito**
-
-This ensures:
-
-* Business logic reliability
-* Easier debugging
-* Maintainable code
-
-Run tests:
+## ⚙️ How to Run Locally
 
 ```bash
-mvn test
-```
+# Clone the repo
+git clone https://github.com/Devrajsingh029/task-management-api
 
----
-
-## Setup and Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/task-management-app.git
-```
-
-### 2. Navigate to project folder
-
-```bash
-cd task-management-app
-```
-
-### 3. Configure MySQL
-
-Update `application.properties`:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/task_db
+# Configure DB in application.properties
+spring.datasource.url=jdbc:mysql://localhost:3306/taskdb
 spring.datasource.username=root
 spring.datasource.password=yourpassword
-spring.jpa.hibernate.ddl-auto=update
-```
 
-### 4. Run the application
-
-```bash
+# Run
 mvn spring-boot:run
 ```
 
-Application will start at:
-
-```
-http://localhost:8080
-```
-
 ---
 
-## Future Improvements
-
-* Add frontend using **React or Angular**
-* Implement task deadlines and reminders
-* Add pagination and sorting
-* Dockerize the application
-* Deploy to cloud (AWS / Azure)
-
-
-
-
-
+## 👤 Author
+**Devraj Singh** — [LinkedIn](https://linkedin.com/in/devraj-singh01) | [GitHub](https://github.com/Devrajsingh029)
